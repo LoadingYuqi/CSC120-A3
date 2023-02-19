@@ -1,10 +1,14 @@
 /**
  * The conversation class takes in a number of rounds of conversation,
  * then has the set number of back-and-forth with the user
+ * by taking ion a string of user input,
+ * checking if it contains any first or second-person pronouns to swap
+ * and print either a random reply or a reply with swapped pronouns
  * @author Yuqi Wang
  */
 
 import java.util.Scanner;
+import java.util.Random;
 
 class Conversation {
 
@@ -12,7 +16,7 @@ class Conversation {
   private String[] pronouns;
   private int rounds;
 
-  public boolean ifPronouns (String input){
+  public boolean hasPronouns (String input){
     pronouns = new String[] {"i ", "i,", "i.", "i?", 
     "me ", "me,", "me.", "me?", 
     "my ", "my,", "my.", "my?",
@@ -20,7 +24,7 @@ class Conversation {
     "you ", "you,", "you.", "you?",
     "your ", "your,", "your.", "your?",};
     boolean match = false;
-    for (String pronoun : pronouns){
+    for (String pronoun : pronouns){ // Reference: https://stackoverflow.com/questions/8992100/test-if-a-string-contains-any-of-the-strings-from-an-array
       if (input.contains(pronoun)){
         match = true;
         break;
@@ -32,6 +36,10 @@ class Conversation {
   public void random (String input){
 
     replies = new String[] {"I see.", "Thanks for sharing.", "Okay.", "Interesting."};
+    Random random = new Random();
+    int randomInt = random.nextInt(replies.length);
+    System.out.println(replies[randomInt]);
+    
   }
 
   public void specific (String input){
@@ -52,7 +60,15 @@ class Conversation {
     for (int i = 0; i < rounds; i++){
     
       String text = userInput.nextLine();
-      if ()
+      String lowText = text.toLowerCase();
+      
+      if (hasPronouns(lowText)){
+        specific(lowText);
+      }
+      else{
+        random(lowText);
+      }
+
     }
 
     System.out.println("See ya!");
