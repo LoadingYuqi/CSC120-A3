@@ -1,9 +1,9 @@
 /**
  * The conversation class takes in a number of rounds of conversation,
  * then has the set number of back-and-forth with the user
- * by taking ion a string of user input,
- * checking if it contains any first or second-person pronouns to swap
- * and print either a random reply or a reply with swapped pronouns
+ * by taking in a string of user input,
+ * checking if it contains any first or second-person pronouns,
+ * and print either a random reply or a reply with swapped pronouns.
  * @author Yuqi Wang
  */
 
@@ -15,6 +15,10 @@ class Conversation {
   private String[] replies;
   private String[] pronouns;
   private int rounds;
+
+  public Conversation(int rounds){
+    this.rounds = rounds;
+  }
 
   public boolean hasPronouns (String input){
     pronouns = new String[] {"i ", "i,", "i.", "i?", 
@@ -39,27 +43,20 @@ class Conversation {
     Random random = new Random();
     int randomInt = random.nextInt(replies.length);
     System.out.println(replies[randomInt]);
-    
+
   }
 
   public void specific (String input){
 
   }
-  
-  public void main(String[] arguments) {
-    
-    
 
-    System.out.println("How many rounds would you like to have?");
+  public void chat(){
 
-    Scanner userInput = new Scanner(System.in);
-    rounds = userInput.nextInt();
-    
-    System.out.println("Hi there!  What's on your mind?");
-
-    for (int i = 0; i < rounds; i++){
-    
-      String text = userInput.nextLine();
+    Scanner input = new Scanner(System.in);
+    for (int i = 0; i < this.rounds; i++){
+      
+      
+      String text = input.nextLine();
       String lowText = text.toLowerCase();
       
       if (hasPronouns(lowText)){
@@ -68,11 +65,27 @@ class Conversation {
       else{
         random(lowText);
       }
-
+      
     }
+
+    input.close();
+  }
+  
+  
+  public void main(String[] arguments) {
+    
+    System.out.println("How many rounds would you like to have?");
+    Scanner userInput = new Scanner(System.in);
+    int rounds = userInput.nextInt();
+    
+    System.out.println("Hi there!  What's on your mind?");
+
+    Conversation myConversation = new Conversation(rounds);
+    myConversation.chat;
 
     System.out.println("See ya!");
     userInput.close();
   }
   
 }
+
