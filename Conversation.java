@@ -38,11 +38,11 @@ class Conversation {
   }
 
   public boolean hasPronouns (String input){
-    pronouns = new String[] {" i ", " i,", " i.", " i?", 
+    pronouns = new String[] {" i ", " i,", " i.", " i?", "i'", 
     " me ", " me,", " me.", " me?", 
     " my ",
     " mine ", " mine,", " mine.", " mine?",
-    " you ", " you,", " you.", " you?",
+    " you ", " you,", " you.", " you?", "you'",
     " your "};
     boolean match = false;
     for (String pronoun : pronouns){ // Reference: https://stackoverflow.com/questions/8992100/test-if-a-string-contains-any-of-the-strings-from-an-array
