@@ -56,7 +56,7 @@ class Conversation {
 
   public void random (String input){
 
-    replies = new String[] {"I see.", "Thanks for sharing.", "Okay.", "Interesting."};
+    replies = new String[] {"I see.", "Thanks for sharing.", "Okay.", "Interesting.", "I'm glad we talked"};
     Random random = new Random();
     int randomInt = random.nextInt(replies.length);
     System.out.println(replies[randomInt]);
